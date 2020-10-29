@@ -1,0 +1,14 @@
+﻿@model IEnumerable<NewsPaper.GatewayClientApi.ViewModels.ArticleViewModel>
+
+<h1>Index</h1>
+
+<partial name="_Menu"/>
+
+<h3>В списке @Model.Count() элементов:</h3>
+ 
+@foreach(var article in Model)
+{
+    <p>@article.Title</p>
+    <p>@article.NikeNameAuthor</p>
+    <p>@article.Description</p>
+}
