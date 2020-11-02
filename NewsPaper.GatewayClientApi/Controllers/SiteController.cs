@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Calabonga.OperationResults;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
 using NewsPaper.GatewayClientApi.ViewModels;
 using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace NewsPaper.GatewayClientApi.Controllers
 {
@@ -42,7 +37,7 @@ namespace NewsPaper.GatewayClientApi.Controllers
                     Address = discoveryDocument.TokenEndpoint,
                     ClientId = "client_id",
                     ClientSecret = "client_secret",
-                    Scope = "OrdersAPI"
+                    Scope = "GatewayClientApi"
                 });
 
 
@@ -51,22 +46,20 @@ namespace NewsPaper.GatewayClientApi.Controllers
 
             articlesClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await articlesClient.GetStringAsync("https://localhost:5001/articles/getarticlesbyauthor?authorGuid=b0d4ce5d-2757-4699-948c-cfa72ba94f86").ConfigureAwait(false);
+            HttpResponseMessage response =
+                (await articlesClient.GetAsync("https://localhost:5001/articles/getarticlesbyauthor?authorGuid=b0d4ce5d-2757-4699-948c-cfa72ba94f86")).EnsureSuccessStatusCode();
+            
+            string responseBody = await response.Content.ReadAsStringAsync();
 
-            //if (!response.IsSuccessStatusCode)
-            //{
-            //    ViewBag.Message = response.StatusCode.ToString();
-            //    return View();
-            //}
-            //response.EnsureSuccessStatusCode();
-            //if (response.Content is object)
-            //{
-            //    var stream = await response.Content.ReadAsStreamAsync();
-            //    var data = await JsonSerializer.DeserializeAsync<IEnumerable<ArticleViewModel>>(stream);
-            //    return View(data);
-            //}
-            var data = JsonConvert.DeserializeObject<IEnumerable<ArticleViewModel>>(response);
-            return View(data);
+            OperationResult<IEnumerable<ArticleViewModel>> operation = JsonConvert.DeserializeObject<OperationResult<IEnumerable<ArticleViewModel>>>(responseBody);
+
+            if (operation.Exception!=null)
+            {
+                ViewBag.Exception = operation.Exception.Message;
+                ViewBag.TypeException = operation.Exception.GetType();
+                return View();
+            }
+            return View(operation.Result);
         }
     }
 }

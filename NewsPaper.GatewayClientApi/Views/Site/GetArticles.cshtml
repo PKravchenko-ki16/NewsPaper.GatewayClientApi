@@ -4,11 +4,19 @@
 
 <partial name="_Menu"/>
 
-<h3>В списке @Model.Count() элементов:</h3>
- 
-@foreach(var article in Model)
+@if (ViewBag.Exception != null)
 {
-    <p>@article.Title</p>
-    <p>@article.NikeNameAuthor</p>
-    <p>@article.Description</p>
+    <h3>Exception @ViewBag.Exception</h3>
+}
+
+@if (Model != null)
+{
+    <h3>В списке @Model.Count() элементов:</h3>
+ 
+    @foreach(var article in Model)
+    {
+        <p>@article.Title</p>
+        <p>@article.NikeNameAuthor</p>
+        <p>@article.Description</p>
+    }
 }
