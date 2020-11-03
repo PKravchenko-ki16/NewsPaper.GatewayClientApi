@@ -2,8 +2,8 @@
 
 namespace NewsPaper.GatewayClientApi.ViewModels.Base
 {
-    public class ViewModelBase : IViewModel
+    public abstract class ViewModelBase : IViewModel
     {
-        public Guid Id { get; set; }
+        public abstract Guid Id { get; set; }
     }
 }

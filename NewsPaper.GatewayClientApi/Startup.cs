@@ -13,6 +13,7 @@ namespace NewsPaper.GatewayClientApi
         {
             ConfigureServicesBase.ConfigureServices(services);
             ConfigureServicesControllers.ConfigureServices(services);
+            ConfigureServicesSwagger.ConfigureServices(services);
             DependencyContainerRegistrations.Common(services);
         }
 

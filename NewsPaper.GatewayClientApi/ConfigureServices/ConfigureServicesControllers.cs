@@ -6,7 +6,7 @@ namespace NewsPaper.GatewayClientApi.ConfigureServices
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
         }
     }
 }
