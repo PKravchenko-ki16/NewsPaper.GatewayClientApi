@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using NewsPaper.GatewayClientApi.Configure;
+using NewsPaper.GatewayClientApi.ConfigureServices;
+using NewsPaper.GatewayClientApi.Infrastructure.DependencyInjection;
 
 namespace NewsPaper.GatewayClientApi
 {
@@ -9,28 +11,15 @@ namespace NewsPaper.GatewayClientApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient();
-
-            services.AddControllersWithViews();
+            ConfigureServicesBase.ConfigureServices(services);
+            ConfigureServicesControllers.ConfigureServices(services);
+            DependencyContainerRegistrations.Common(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+            ConfigureCommon.Configure(app, env);
+            ConfigureEndpoints.Configure(app);
         }
     }
 }
