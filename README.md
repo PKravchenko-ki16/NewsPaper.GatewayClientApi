@@ -6,11 +6,11 @@
 
 General queries
 
-![Alt-текст](https://downloader.disk.yandex.ru/preview/936641acd5a488cf7ec85aced53c00b09011c0d5f6f95afc085b1ccb06e09a50/5fad44f7/o5TRjymLK6o2bnM1dD02S6cpwKM48HQ8bTxZPU09__mRbOV7FeIW1rCf8gOtp2x1e82qbKL0LpTg1ufqKx_WHA==?uid=0&filename=2020-11-12_16-55-48.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&tknv=v2&owner_uid=311404214&size=2048x2048 "Swagger screenshot")
+![Alt-текст](https://user-images.githubusercontent.com/26356921/99261224-76667e80-282d-11eb-92f7-8a509583c163.png "Swagger screenshot")
 
 Example request with parameter
 
-![Alt-текст](https://downloader.disk.yandex.ru/preview/ed12fda738abc26fa685b7ab769043ecd9ae8e7222f7916bf6484c306fc73311/5fad4538/Z-6MquM9yFoHZvLykOYvkvqDHKwkXAdvcf0ecOSQjFfHLvJQkD6VUd5enN4e4wdjlB1YdODn_nc9s38q_mRRyA==?uid=0&filename=2020-11-12_17-01-18.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&tknv=v2&owner_uid=311404214&size=2048x2048 "Swagger screenshot")
+![Alt-текст](https://user-images.githubusercontent.com/26356921/99261218-75355180-282d-11eb-8b2e-42cc691b5fce.png "Swagger screenshot")
 
 ## Retrieve Token To IdentityServer in RequestClientCredentialsToken
 
